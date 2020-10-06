@@ -1,0 +1,50 @@
+## EASY MODE
+
+Import into pandas
+create table then
+create keys
+JUSTIN showed storing M and F as Boolean in class
+IN Class - date time use -1 for input to_char(datetime)
+hist for name freq
+vert =False barchart
+Herc first & last name contain both M and F
+emp_ID is April Fools Day
+
+
+
+## QDB EASY MODE
+
+departments
+-
+dept_num VARCHAR PK
+dept_name VARCHAR 
+
+dept_emp
+-
+emp_num INT PK
+dept_num VARCHAR FK
+
+dept_manager
+-
+dept_num VARCHAR FK
+emp_num INT FK
+
+titles
+-
+title_id VARCHAR PK
+title VARCHAR FK
+
+employees
+-
+emp_num INT FK
+title_id VARCHAR FK
+birth_date VARCHAR
+first_name VARCHAR
+last_name VARCHAR
+sex CHAR(1)
+hire_date VARCHAR
+
+salaries
+-
+emp_num INT FK
+salary INT 
