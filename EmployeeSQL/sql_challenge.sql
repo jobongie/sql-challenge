@@ -60,3 +60,5 @@
 
 -- ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_num" FOREIGN KEY("emp_num")
 -- REFERENCES "dept_emp" ("emp_num");
+
+SELECT * FROM dept_emp;
