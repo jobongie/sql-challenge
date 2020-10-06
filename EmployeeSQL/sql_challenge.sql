@@ -1,26 +1,19 @@
 
-/*DROP TABLE IF EXISTS dept_manager 
-DROP TABLE IF EXISTS employees
-DROP TABLE IF EXISTS salaries
-DROP TABLE IF EXISTS titles
-DROP TABLE IF EXISTS dept_emp
-DROP TABLE IF EXISTS departments*/
-
+-- DROP TABLE dept_manager;
+-- DROP TABLE titles;
+-- DROP TABLE employees;
+-- DROP TABLE salaries;
+-- DROP TABLE departments;
+-- DROP TABLE dept_emp;
 
 -- CREATE TABLE "departments" (
 --     "dept_num" VARCHAR   NOT NULL,
---     "dept_name" VARCHAR   NOT NULL,
---     CONSTRAINT "pk_departments" PRIMARY KEY (
---         "dept_num"
---      )
+--     "dept_name" VARCHAR   NOT NULL
 -- );
 
 -- CREATE TABLE "dept_emp" (
 --     "emp_num" INTEGER   NOT NULL,
---     "dept_num" VARCHAR   NOT NULL,
---     CONSTRAINT "pk_dept_emp" PRIMARY KEY (
---         "emp_num"
---      )
+--     "dept_num" VARCHAR   NOT NULL
 -- );
 
 -- CREATE TABLE "dept_manager" (
@@ -30,10 +23,7 @@ DROP TABLE IF EXISTS departments*/
 
 -- CREATE TABLE "titles" (
 --     "title_id" VARCHAR   NOT NULL,
---     "title" VARCHAR   NOT NULL,
---     CONSTRAINT "pk_titles" PRIMARY KEY (
---         "title_id"
---      )
+--     "title" VARCHAR   NOT NULL
 -- );
 
 -- CREATE TABLE "employees" (
@@ -51,6 +41,8 @@ DROP TABLE IF EXISTS departments*/
 --     "salary" INTEGER   NOT NULL
 -- );
 
+
+-- # FIgure out composite keys and redo PK and FK
 -- ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_num" FOREIGN KEY("dept_num")
 -- REFERENCES "departments" ("dept_num");
 
@@ -68,39 +60,3 @@ DROP TABLE IF EXISTS departments*/
 
 -- ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_num" FOREIGN KEY("emp_num")
 -- REFERENCES "dept_emp" ("emp_num");
-
--- -- Can use countrows in schema>table to verify instead
--- SELECT * FROM dept_emp
-
--- # USE CTE (do join not query) to pull from tables employees and salaries
--- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
-
-
--- # USE SELECT * FROM employees WHERE hire_date = 1986 to filter for emps in 1986
--- # Will require date_time and (-1) maybe separating into columns to filter, or filterby in pandas
--- 2. List first name, last name, and hire date for employees who were hired in 1986.
-
-
--- # USE CTE to pull from tables departments, dept_manager, employees. NOTE: I changed man_emp_num to emp_num as designator m is man specific
--- 3. List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
-
-
--- # USE CTE employees and dept_emp NOTE: this one may require the use of nested Query, check if logic driven or efficiency
--- 4. List the department of each employee with the following information: employee number, last name, first name, and department name.
-
-
--- # USE filter SELECT (columns) FROM employees NOTE: all Hercs ONE B is probably an HR designator for H-1B visas as nothing else fits
--- 5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
-
-
--- # CTE departments and employees and filter (these types require joins and one to many groupby's, use orderby as well)
--- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
-
-
--- # Dovetails 6 and 7 so repeat code with and/or conditional on where statement
--- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
-
-
--- equvalent of .nunique(), .count(), use employees table and refer to 09-sql-02 or -03 INS in class examples Chris used of # instances
--- 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
-
