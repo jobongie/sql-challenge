@@ -9,6 +9,7 @@ hist for name freq
 vert =False barchart
 Herc first & last name contain both M and F
 emp_ID is April Fools Day
+index constraints
 
 
 
@@ -21,23 +22,23 @@ dept_name VARCHAR
 
 dept_emp
 -
-emp_num INT PK
-dept_num VARCHAR FK
+emp_num INTEGER PK
+dept_num VARCHAR FK >- departments.dept_num
 
 dept_manager
 -
-dept_num VARCHAR FK
-emp_num INT FK
+dept_num VARCHAR FK >- departments.dept_num
+emp_num INTEGER FK >- dept_emp.emp_num
 
 titles
 -
 title_id VARCHAR PK
-title VARCHAR FK
+title VARCHAR
 
 employees
 -
-emp_num INT FK
-title_id VARCHAR FK
+emp_num INTEGER FK >- dept_emp.emp_num
+title_id VARCHAR FK - titles.title_id
 birth_date VARCHAR
 first_name VARCHAR
 last_name VARCHAR
@@ -46,5 +47,6 @@ hire_date VARCHAR
 
 salaries
 -
-emp_num INT FK
-salary INT 
+emp_num INTEGER FK >- dept_emp.emp_num
+salary INTEGER 
+
