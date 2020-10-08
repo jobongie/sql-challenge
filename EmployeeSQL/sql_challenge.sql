@@ -72,38 +72,68 @@
 
 -- -- Verify using countrows under table
 
--- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
+-- -- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
 
 -- SELECT employees.emp_num, last_name, first_name, sex, salary
 -- FROM employees
 -- INNER JOIN salaries ON salaries.emp_num = employees.emp_num;
 
--- 2. List first name, last name, and hire date for employees who were hired in 1986.
+-- -- 2. List first name, last name, and hire date for employees who were hired in 1986.
 
 -- SELECT first_name, last_name, hire_date
 -- FROM employees
 -- WHERE hire_date BETWEEN '01/01/1986' AND '01/01/1987';
 
--- # USE CTE to pull from tables departments, dept_manager, employees. NOTE: I changed man_emp_num to emp_num as designator m is man specific
--- 3. List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
+-- -- 3. List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
 
+-- SELECT departments.dept_num, departments.dept_name, dept_manager.emp_num, employees.last_name, employees.first_name
+-- FROM departments
+-- JOIN dept_manager
+-- ON departments.dept_num = dept_manager.dept_num
+-- JOIN employees
+-- ON dept_manager.emp_num = employees.emp_num;
 
+-- -- 4. List the department of each employee with the following information: employee number, last name, first name, and department name.
 
--- # USE CTE employees and dept_emp NOTE: this one may require the use of nested Query, check if logic driven or efficiency
--- 4. List the department of each employee with the following information: employee number, last name, first name, and department name.
+-- SELECT dept_emp.emp_num, employees.last_name, employees.first_name, departments.dept_name
+-- FROM dept_emp
+-- JOIN employees
+-- ON dept_emp.emp_num = employees.emp_num
+-- JOIN departments
+-- ON dept_emp.dept_num = departments.dept_num;
 
+-- -- 5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
 
--- # USE filter SELECT (columns) FROM employees NOTE: all Hercs ONE B is probably an HR designator for H-1B visas as nothing else fits
--- 5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+-- SELECT first_name, last_name, sex
+-- FROM employees
+-- WHERE first_name = 'Hercules'
+-- AND last_name LIKE 'B%';
 
+-- -- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
 
--- # CTE departments and employees and filter (these types require joins and one to many groupby's, use orderby as well)
--- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
+-- SELECT dept_emp.emp_num, employees.last_name, employees.first_name, departments.dept_name
+-- FROM dept_emp
+-- JOIN employees
+-- ON dept_emp.emp_num = employees.emp_num
+-- JOIN departments
+-- ON dept_emp.dept_num = departments.dept_num
+-- WHERE departments.dept_name = 'Sales';
 
+-- -- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
 
--- # Dovetails 6 and 7 so repeat code with and/or conditional on where statement
--- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+-- SELECT dept_emp.emp_num, employees.last_name, employees.first_name, departments.dept_name
+-- FROM dept_emp
+-- JOIN employees
+-- ON dept_emp.emp_num = employees.emp_num
+-- JOIN departments
+-- ON dept_emp.dept_num = departments.dept_num
+-- WHERE departments.dept_name = 'Sales' 
+-- OR departments.dept_name = 'Development';
 
-
--- equvalent of .nunique(), .count(), use employees table and refer to 09-sql-02 or -03 INS in class examples Chris used of # instances
--- 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+-- -- 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+-- SELECT last_name,
+-- COUNT(last_name) AS "frequency"
+-- FROM employees
+-- GROUP BY last_name
+-- ORDER BY
+-- COUNT(last_name) DESC;
