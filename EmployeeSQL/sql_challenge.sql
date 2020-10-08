@@ -63,19 +63,21 @@
 
 -- SELECT * FROM dept_emp;
 
--- # USE CTE (do join not query) to pull from tables employees and salaries
 -- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
-SELECT (employees.emp_num, last_name, first_name, sex, salary) 
-FROM employees
-INNER JOIN salaries ON salaries.emp_num = employees.emp_num
 
--- # USE SELECT * FROM employees WHERE hire_date = 1986 to filter for emps in 1986
--- # Will require date_time and (-1) maybe separating into columns to filter, or filterby in pandas
+-- SELECT employees.emp_num, last_name, first_name, sex, salary
+-- FROM employees
+-- INNER JOIN salaries ON salaries.emp_num = employees.emp_num;
+
 -- 2. List first name, last name, and hire date for employees who were hired in 1986.
 
+SELECT first_name, last_name, hire_date
+FROM employees
+WHERE hire_date = 1986;
 
 -- # USE CTE to pull from tables departments, dept_manager, employees. NOTE: I changed man_emp_num to emp_num as designator m is man specific
 -- 3. List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
+
 
 
 -- # USE CTE employees and dept_emp NOTE: this one may require the use of nested Query, check if logic driven or efficiency
