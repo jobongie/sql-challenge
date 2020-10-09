@@ -36,8 +36,8 @@ CREATE TABLE "employees" (
 );
 
 CREATE TABLE "dept_emp" (
-    "emp_num" INTEGER   NOT NULL,
-    "dept_num" VARCHAR   NOT NULL
+    "dept_num" VARCHAR   NOT NULL,
+    "emp_num" INTEGER   NOT NULL
 );
 
 CREATE TABLE "dept_manager" (
@@ -46,18 +46,18 @@ CREATE TABLE "dept_manager" (
 );
 
 CREATE TABLE "salaries" (
-    "emp_num" INTEGER   NOT NULL,
-    "salary" INTEGER   NOT NULL
+    "salary" INTEGER   NOT NULL,
+    "emp_num" INTEGER   NOT NULL
 );
 
 ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_title_id" FOREIGN KEY("title_id")
 REFERENCES "titles" ("title_id");
 
-ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_num" FOREIGN KEY("emp_num")
-REFERENCES "employees" ("emp_num");
-
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_num" FOREIGN KEY("dept_num")
 REFERENCES "departments" ("dept_num");
+
+ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_num" FOREIGN KEY("emp_num")
+REFERENCES "employees" ("emp_num");
 
 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_dept_num" FOREIGN KEY("dept_num")
 REFERENCES "departments" ("dept_num");
